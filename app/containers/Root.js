@@ -22,6 +22,6 @@ export default function Root({ store, history }: RootType) {
 */
 export default function Root() {
   return (
-    <div>14</div>
+    <div>1444</div>
   );
 }
