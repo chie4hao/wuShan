@@ -1,0 +1,7 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "./main.prod.js",
+  "license": "MIT",
+  "devDependencies": {}
+}
