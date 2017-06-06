@@ -21,7 +21,6 @@ const publicPath = `http://localhost:${port}/dist`;
 const dll = path.resolve(process.cwd(), 'dll');
 const manifest = path.resolve(dll, 'vendor.json');
 
-console.log(dll);
 /**
  * Warn if the DLL is not built
  */

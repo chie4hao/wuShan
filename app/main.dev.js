@@ -4,18 +4,7 @@ import { app, BrowserWindow } from 'electron';
 
 let mainWindow = null;
 
-if (process.env.NODE_ENV === 'production') {
-  const sourceMapSupport = require('source-map-support');
-  sourceMapSupport.install();
-}
-
-if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
-  // require('electron-debug')();
-  const path = require('path');
-  const p = path.join(__dirname, '..', 'app', 'node_modules');
-  require('module').globalPaths.push(p);
-}
-
+/*
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
@@ -28,7 +17,7 @@ const installExtensions = async () => {
     .all(extensions.map(name => installer.default(installer[name], forceDownload)))
     .catch(console.log);
 };
-
+*/
 /**
  * Add event listeners...
  */
@@ -43,10 +32,11 @@ app.on('window-all-closed', () => {
 
 
 app.on('ready', async () => {
+  /*
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }
-
+  */
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
@@ -69,7 +59,7 @@ app.on('ready', async () => {
     mainWindow = null;
   });
 
-  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
+  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true'||1) {
     mainWindow.openDevTools({
       // detach: true,
     });

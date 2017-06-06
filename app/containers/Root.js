@@ -22,6 +22,7 @@ export default function Root({ store, history }: RootType) {
 */
 export default function Root() {
   return (
-    <div>1444</div>
+    <div>1</div>
   );
 }
+throw new Error('lsdkjf');
