@@ -59,7 +59,7 @@ app.on('ready', async () => {
     mainWindow = null;
   });
 
-  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true'||1) {
+  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     mainWindow.openDevTools({
       // detach: true,
     });

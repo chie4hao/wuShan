@@ -25,4 +25,3 @@ export default function Root() {
     <div>1</div>
   );
 }
-throw new Error('lsdkjf');
