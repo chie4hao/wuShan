@@ -1,8 +1,9 @@
 // @flow
 import React from 'react';
-import { Provider } from 'react-redux';
-import './Root.css';
+import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';
+import './Root.css';
+import Text from './text';
 // import { ConnectedRouter } from 'react-router-redux';
 /* import Routes from '../routes';
 
@@ -22,10 +23,10 @@ export default function Root({ store, history }: RootType) {
 }
 */
 
-function visibilityFilter(state = 'showAll', action) {
+function visibilityFilter(state = { show: 'showAll' }, action) {
   switch (action.type) {
     case 'setFilter':
-      return action.filter;
+      return { show: state.show + 1 };
     default:
       return state;
   }
@@ -36,7 +37,7 @@ const store = createStore(visibilityFilter);
 export default function Root() {
   return (
     <Provider store={store}>
-      <div>2</div>
+      <Text />
     </Provider>
   );
 }
