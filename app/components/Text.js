@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Text extends Component {
+class Text extends Component {
   props: {
     dispatch: () => void,
     aa: string
@@ -16,3 +16,5 @@ export default class Text extends Component {
     );
   }
 }
+
+export default Text;
