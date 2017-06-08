@@ -1,17 +1,5 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-class Text extends Component {
-  render() {
-    const { dispatch } = this.props;
-    return (
-      <div>
-        <div>{this.props.aa}</div>
-        <button onClick={() => dispatch({ type: 'setFilter' })}>sldkfj</button>
-      </div>
-    );
-  }
-}
+import Text from '../components/Text';
 
 function select(state) {
   return {
