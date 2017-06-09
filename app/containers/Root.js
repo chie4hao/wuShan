@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { Provider } from 'react-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './Root.css';
 import Text from './text';
 
@@ -11,7 +12,9 @@ type RootType = {
 export default function Root({ store }: RootType) {
   return (
     <Provider store={store}>
-      <Text />
+      <MuiThemeProvider>
+        <Text />
+      </MuiThemeProvider>
     </Provider>
   );
 }

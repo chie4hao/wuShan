@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class Text extends Component {
   props: {
@@ -10,8 +11,8 @@ class Text extends Component {
     const { dispatch } = this.props;
     return (
       <div>
-        <div>{this.props.aa}</div>
-        <button onClick={() => dispatch({ type: 'setFilter' })}>sldkfj</button>
+        <div>{this.props.aa}1234</div>
+        <RaisedButton onClick={() => dispatch({ type: 'setFilter' })} label={'Add'} />
       </div>
     );
   }
