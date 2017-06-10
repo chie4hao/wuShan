@@ -6,4 +6,5 @@ function select(state) {
     aa: state.show
   };
 }
+
 export default connect(select)(Text);

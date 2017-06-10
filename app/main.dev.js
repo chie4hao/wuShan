@@ -21,6 +21,12 @@ const installExtensions = async () => {
 /**
  * Add event listeners...
  */
+if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
+  require('electron-debug')();
+  const path = require('path');
+  const p = path.join(__dirname, '..', 'app', 'node_modules');
+  require('module').globalPaths.push(p);
+}
 
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even

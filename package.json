@@ -76,6 +76,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "electron-debug": "^1.1.0",
     "material-ui": "^0.18.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
