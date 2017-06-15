@@ -11,7 +11,7 @@ class Text extends Component {
     const { dispatch } = this.props;
     return (
       <div>
-        <div>{this.props.aa}1234</div>
+        <div>{this.props.aa}</div>
         <RaisedButton onClick={() => dispatch({ type: 'setFilter' })} label={'Add'} />
       </div>
     );
