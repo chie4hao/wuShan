@@ -3,7 +3,7 @@ import Text from '../components/Text';
 
 function select(state) {
   return {
-    aa: state.show
+    aa: state.rootReducer.show
   };
 }
 

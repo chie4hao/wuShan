@@ -1,3 +1,6 @@
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+
 const rootReducer = function rootReducer(state = { show: 'showAll' }, action) {
   switch (action.type) {
     case 'setFilter':
@@ -7,4 +10,9 @@ const rootReducer = function rootReducer(state = { show: 'showAll' }, action) {
   }
 };
 
-export default rootReducer;
+const rootReducer1 = combineReducers({
+  rootReducer,
+  routerReducer
+});
+
+export default rootReducer1;

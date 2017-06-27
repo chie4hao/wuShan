@@ -4,7 +4,7 @@ import { AppContainer } from 'react-hot-loader';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 // import createBrowserHistory from 'history/lib/createBrowserHistory';
 import Root from './containers/Root';
-import { configureStore } from './store/configureStore';
+import { configureStore, history } from './store/configureStore';
 
 injectTapEventPlugin();
 
@@ -16,7 +16,7 @@ const store = configureStore();
 
 render(
   <AppContainer>
-    <Root store={store} />
+    <Root store={store} history={history} />
   </AppContainer>,
   document.getElementById('root')
 );
@@ -26,7 +26,7 @@ if (module.hot) {
     const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
     render(
       <AppContainer>
-        <NextRoot store={store} />
+        <NextRoot store={store} history={history} />
       </AppContainer>,
       document.getElementById('root')
     );
