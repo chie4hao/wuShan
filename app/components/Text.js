@@ -12,7 +12,7 @@ class Text extends Component {
     return (
       <div>
         <div>{this.props.aa}</div>
-        <RaisedButton onClick={() => dispatch({ type: 'setFilter' })} label={'Add'} />
+        <RaisedButton onClick={() => dispatch({ type: 'setFilter' })} label={'Add'} backgroundColor={'red'} />
       </div>
     );
   }
