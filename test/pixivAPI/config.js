@@ -1,6 +1,6 @@
 module.exports = {
     // 此项为必需,请根据自己浏览器Cookie中的PHPSESSID更改,不更改或者不正确的PHPSESSID程序无法工作
-  PHPSESSID: '8318723_11543ebee0ad535225bbe9dcbc6cc873',
+  PHPSESSID: '8318723_1ad2f75057169507bc751fd4bf7cdce8',
 
     // 是否下载多图的illustId,默认true基本不需要改
   mangaModel: true,
@@ -24,5 +24,5 @@ module.exports = {
   originalOneRetransmissionCount: 4,
 
     // 是否只下载R18？！！
-  R18: false
+  R18: true
 };

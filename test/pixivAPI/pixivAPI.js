@@ -1,6 +1,7 @@
 /**
  * Created by chie on 2016/5/8.
  */
+/* eslint promise/always-return: 0, promise/catch-or-return: 0,*/
 
 const chiePixiv = require('./chiePixiv');
 const chieRequest = require('./chiePromiseRequest.js');
@@ -79,6 +80,8 @@ const pixivAPI = {
         }
       }, (a) => {
         reject(`search页数解析失败${a}`);
+      }).catch((a) => {
+        throw a;
       });
     });
   },
@@ -127,40 +130,42 @@ const pixivAPI = {
         console.log(`${count}页`);
         const pageArray = [];
         for (let i = 0; i < count; i += 1) pageArray[i] = i + 1;
-        return Promise.all(pageArray.map((i) => typeof (a) === 'string' ? pixivAPI.searchIllust(a, i) : pixivAPI.authorIdIllust(a, i))).then((a) => {
-          let successCount = 0,
-            errorCount = 0,
-            allCount = 0;
+        return Promise.all(pageArray.map((i) => typeof (a) === 'string' ? pixivAPI.searchIllust(a, i) : pixivAPI.authorIdIllust(a, i))).then((ab) => {
+          let successCount = 0;
+          let errorCount = 0;
+          let allCount = 0;
           let errorlog = '';
-          a.forEach((b) => {
+          ab.forEach((b) => {
             b.forEach((c) => {
               if (c.indexOf('写完') !== -1 || c.indexOf('全部完成') !== -1) {
-                successCount++;
+                successCount += 1;
               } else if (c.indexOf('error') !== -1) {
-                errorCount++;
+                errorCount += 1;
                 errorlog += (`${c} `);
               }
-              allCount++;
+              allCount += 1;
             });
           });
           resolve(`成功数量:${successCount} 失败数量:${errorCount} 过滤数量:${allCount - successCount - errorCount}${errorlog === '' ? '   ' : `   ${ errorlog}`}`);
         });
       }, (b) => {
         resolve(b);
+      }).catch((as) => {
+        throw as;
       });
     });
   },
     // 下载所有搜索结果！！！
   searchAllIllust(searchStr) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       pixivAPI.searchPageCount(searchStr).then((count) => {
         console.log(`${count}页`);
         const pageArray = [];
-        for (let i = 0; i < count; i++) pageArray[i] = i + 1;
+        for (let i = 0; i < count; i += 1) pageArray[i] = i + 1;
         return Promise.all(pageArray.map((i) => pixivAPI.searchIllust(searchStr, i))).then((a) => {
-          let successCount = 0,
-            errorCount = 0,
-            allCount = 0;
+          let successCount = 0;
+          let errorCount = 0;
+          let allCount = 0;
           let errorlog = '';
           a.forEach((b) => {
             b.forEach((c) => {
@@ -177,6 +182,8 @@ const pixivAPI = {
         });
       }, (b) => {
         resolve(b);
+      }).catch((a) => {
+        throw a;
       });
     });
   },

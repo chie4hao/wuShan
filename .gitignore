@@ -28,6 +28,7 @@ build/Release
 node_modules
 app/node_modules
 test/pixivAPI/node_modules
+test/pixivAPI/resources
 
 # OSX
 .DS_Store
