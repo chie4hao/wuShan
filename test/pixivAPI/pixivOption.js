@@ -25,8 +25,8 @@ function RequestOptions(hostname, path, method, referer) {
   };
   headers.Referer = referer;
   headers.Host = hostname;
-  // this.hostname = hostname;
-  // this.path = path;
+  this.hostname = hostname;
+  this.path = path;
   this.method = method;
   this.headers = RequestHeaders(headers);
 }

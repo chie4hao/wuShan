@@ -15,7 +15,7 @@ const chiePixiv = {
     // 通过illust_id下载原图,分支有点多,并且多次引用外外层作用域存储对象,很多promise就不return了
   illustIdToOriginal: (illustId) =>
     new Promise((resolve, reject) => {
-      const mediumUrl = `http://www.pixiv.net/member_illust.php?mode=medium&illust_id=${illustId}`;
+      const mediumUrl = `https://www.pixiv.net/member_illust.php?mode=medium&illust_id=${illustId}`;
       const urlm = url.parse(mediumUrl);
       chieRequest('html', new PixivOption(urlm.hostname, urlm.path, 'GET', 'http://www.pixiv.net/'), {}).then((decoded) => {
         const wrapper = $('#wrapper', decoded.toString());

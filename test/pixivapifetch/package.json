@@ -9,6 +9,8 @@
   "author": "chie4",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^1.7.1"
+    "cheerio": "^1.0.0-rc.2",
+    "lodash": "^4.17.4",
+    "node-fetch": "2.0.0-alpha.5"
   }
 }
