@@ -1,11 +1,9 @@
 const $ = require('cheerio');
-const fs = require('fs');
 
 const PixivOption = require('./pixivOption.js');
 const htmlFetch = require('./globalFetchQueue').htmlFetch();
 const originalFetch = require('./globalFetchQueue').originalFetch();
 const config = require('./config');
-const promisify = require('./promisify');
 
 // const originalFetch = require('./globalFetchQueue').originalFetch();
 
@@ -62,5 +60,7 @@ const illustIdOriginal = async (illustId) => {
   return `${illustId} 已过滤`;
 };
 
-illustIdOriginal(58204369).then(a => console.log(a)).catch(e => console.log(e));
+module.exports = illustIdOriginal;
+
+// illustIdOriginal(58204369).then(a => console.log(a)).catch(e => console.log(e));
 // illustIdOriginal(63515757).then(a => {});

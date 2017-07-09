@@ -12,8 +12,8 @@ module.exports = {
   tagExistsFilter: [],
 
     // 最大并行原画请求数量和Html请求数量,网速好可以适当调高一点,太高可能会被封IP？
-  OriginalGetCount: 1,
-  HtmlGetCount: 3,
+  OriginalGetCount: 100,
+  HtmlGetCount: 300,
 
     // 请求超时时间(ms)
   htmlGetTimeout: 30000,
@@ -24,5 +24,5 @@ module.exports = {
   originalOneRetransmissionCount: 4,
 
     // 是否只下载R18？！！
-  R18: true
+  R18: false
 };

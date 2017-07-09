@@ -91,7 +91,7 @@ const chiePixiv = {
               const imageUrl = url.parse($('._illust_modal img', wrapper).attr('data-src'));
               const imageType = imageUrl.path.match(/\.\w*$/)[0];
               const name = $('.title', wrapper)[0].children[0].data;
-              if (!fs.existsSync(`./test/pixivAPI/resources/${(`${illustId}_${name}${imageType}`).replace(/\\|\/|\?|\*|:|"|<|>/g, '')}`)) {
+              if (!fs.existsSync(`./resources/${(`${illustId}_${name}${imageType}`).replace(/\\|\/|\?|\*|:|"|<|>/g, '')}`)) {
                 chieRequest('originalOne', new PixivOption(imageUrl.hostname, imageUrl.path, 'GET', mediumUrl), { name: `${illustId}_${name}${imageType}` }).then((a) => {
                   resolve(`${illustId.toString()} ${a}`);
                 }, (c) => {

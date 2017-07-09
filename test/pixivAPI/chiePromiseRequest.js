@@ -29,7 +29,7 @@ const request = function (method, options, parameters, uploadcount) {
             cb();
             if (a === 'htmlGet超时' || a.indexOf('problem with request htmlGet') !== -1) {
               if (uploadcount1 < config.htmlGetRetransmissionCount) {
-                console.log('htmlGet超时');
+                console.log(a);
                                 // 重传,重传次数为uploadcount
                 uploadcount1 += 1;
                 request(method, options, parameters, uploadcount1).then((ad) => {
@@ -60,7 +60,7 @@ const request = function (method, options, parameters, uploadcount) {
             cb();
             if (a.indexOf('重传') !== -1) {
               if (uploadcount1 < config.originalOneRetransmissionCount) {
-                console.log('originalGet重传');
+                console.log(a);
                 uploadcount1 += 1;
                 request(method, options, parameters, uploadcount1).then((ad) => {
                   resolve(ad);
@@ -96,7 +96,7 @@ let originalPromise = function (options, parameters) {
     });
 
     req.on('response', (response) => {
-      const output = fs.createWriteStream('./test/pixivAPI/resources/' + parameters.name.replace(/\\|\/|\?|\*|:|"|<|>/g, ''), { encoding: 'base64' });
+      const output = fs.createWriteStream('./resources/' + parameters.name.replace(/\\|\/|\?|\*|:|"|<|>/g, ''), { encoding: 'base64' });
       response.pipe(output);
     });
 

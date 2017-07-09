@@ -19,7 +19,7 @@ function RequestOptions(hostname, path, method, referer) {
       a_type: 0,
       PHPSESSID: config.PHPSESSID,
     },*/
-    Host: 'www.pixiv.net',
+    // Host: 'www.pixiv.net',
     Referer: 'http://www.pixiv.net/',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
   };
