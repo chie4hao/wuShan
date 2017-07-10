@@ -18,8 +18,8 @@ const originalFetchText = async (url, options, filepath) => {
   return `${filepath} 已存在`;
 };
 
-const htmlFetchQueue = retryRequestQueue(htmlFetchText)(config.HtmlGetCount, config.htmlGetRetransmissionCount, ['network timeout at', 'failed, reason:'], config.htmlGetTimeout);
-const originalFetchQueue = retryRequestQueue(originalFetchText)(config.OriginalGetCount, config.originalOneRetransmissionCount, ['network timeout at', 'failed, reason:'], config.originalOneGetTimeOut);
+const htmlFetchQueue = retryRequestQueue(htmlFetchText)(config.HtmlGetCount, config.htmlGetRetransmissionCount, ['network timeout at', 'failed, reason:', 'Response timeout while trying to fetch'], config.htmlGetTimeout);
+const originalFetchQueue = retryRequestQueue(originalFetchText)(config.OriginalGetCount, config.originalOneRetransmissionCount, ['network timeout at', 'failed, reason:', 'Response timeout while trying to fetch'], config.originalOneGetTimeOut);
 
 function htmlFetch() {
   return htmlFetchQueue;

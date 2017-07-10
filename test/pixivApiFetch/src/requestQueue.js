@@ -14,6 +14,7 @@ const retryRequestQueue = fun => (concurrency, retryCount, retryMessage, retryTi
         }
         return await q.push(fun, url, options, ...args);
       } catch (e) {
+        console.log(e);
         if (retryMessage.every(a => e.message.indexOf(a) === -1)) {
           throw e;
         }

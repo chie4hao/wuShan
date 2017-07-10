@@ -21,7 +21,7 @@ module.exports = {
 
     // 最大重传次数(超时或者网络错误时重传)
   htmlGetRetransmissionCount: 3,
-  originalOneRetransmissionCount: 4,
+  originalOneRetransmissionCount: 1,
 
     // 是否只下载R18？！！
   R18: false
