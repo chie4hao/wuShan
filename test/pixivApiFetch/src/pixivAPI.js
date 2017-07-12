@@ -28,12 +28,10 @@ const downloadAllSearch = async (searchStr) => {
       break;
     }
   }
-  while (true) {
-    await new Promise((resolve) => setTimeout(() => { resolve(); }, 1000));
-    if (currentComplete >= searchCount) {
-      return 'done';
-    }
+  while (currentComplete < searchCount) {
+    await new Promise((resolve) => setTimeout(() => resolve(), 1000));
   }
+  return 'all Done';
 };
 
-// downloadAllSearch('艦これ 30000users入り').then(a => console.log(a)).catch(e => console.log(e));
+downloadAllSearch('asdf').then(a => console.log(a)).catch(e => console.log(e));

@@ -23,6 +23,7 @@ const illustIdOriginal = async (illustId) => {
     && config.tagNotExistsFilter.every(b => tagsStr.indexOf(b) === -1)) {
     if ($('img', worksDisplay).length !== 0) {
       if ($('.player', worksDisplay).length !== 0) {
+        /*
         const ugoiraUrl = `https://www.pixiv.net/member_illust.php?mode=ugoira_view&illust_id=${illustId}`;
         const ugoiraText = await htmlFetch(ugoiraUrl, new PixivOption('GET', mediumUrl));
         const a = ugoiraText.match(/https:\\\/\\\/i2.pixiv.net\\\/img-zip-ugoira\\\/img.+zip/)[0].replace(/\\/g, '');
@@ -31,7 +32,7 @@ const illustIdOriginal = async (illustId) => {
             const dest = fs.createWriteStream('./test/pixivApiFetch/resources/q.zip');
             res.body.pipe(dest);
         });
-        return a;
+        return a;*/
         return `${illustId} a player`;
       } else if ($('a', worksDisplay).length !== 0) {
         // 漫画模式
@@ -47,7 +48,7 @@ const illustIdOriginal = async (illustId) => {
               const mangaOriginalType = mangaOriginalUrl.match(/_p\d*\.\w*$/)[0];
               const name = $('.title', wrapper)[0].children[0].data;
               const filepath = './test/pixivApiFetch/resources/';
-              const filename = `${illustId}_${name}${mangaOriginalType}`.replace(/\\|\/|\?|\*|:|"|<|>/g, '');
+              const filename = `${illustId}_${name}${mangaOriginalType}`.replace(/\\|\/|\?|\*|:|"|<|>|\|/g, '');
               const res = await originalFetch(mangaOriginalUrl, new PixivOption('GET', mangaOriginal), filepath + filename);
               return res;
             })()
@@ -61,7 +62,7 @@ const illustIdOriginal = async (illustId) => {
       const imageType = imageUrl.match(/\.\w*$/)[0];
       const name = $('.title', wrapper)[0].children[0].data;
       const filepath = './test/pixivApiFetch/resources/';
-      const filename = `${illustId}_${name}${imageType}`.replace(/\\|\/|\?|\*|:|"|<|>/g, '');
+      const filename = `${illustId}_${name}${imageType}`.replace(/\\|\/|\?|\*|:|"|<|>|\|/g, '');
       const res = await originalFetch(imageUrl, new PixivOption('GET', mediumUrl), filepath + filename);
       return res;
     }
