@@ -23,7 +23,6 @@ const illustIdOriginal = async (illustId) => {
     && config.tagNotExistsFilter.every(b => tagsStr.indexOf(b) === -1)) {
     if ($('img', worksDisplay).length !== 0) {
       if ($('.player', worksDisplay).length !== 0) {
-        
         const ugoiraUrl = `https://www.pixiv.net/member_illust.php?mode=ugoira_view&illust_id=${illustId}`;
         const ugoiraText = await htmlFetch(ugoiraUrl, new PixivOption('GET', mediumUrl));
         const a = ugoiraText.match(/https:\\\/\\\/i2.pixiv.net\\\/img-zip-ugoira\\\/img.+zip/)[0].replace(/\\/g, '');
