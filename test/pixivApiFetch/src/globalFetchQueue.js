@@ -10,17 +10,29 @@ const htmlFetchText = async (url, options) => (await nodeFetch(url, options)).te
 const originalFetchText = async (url, options, filepath) => {
   if (!await promisify(fs.exists)(filepath)) {
     const res = await nodeFetch(url, options);
+    const originalLength = res.headers.get('content-length');
     const dest = fs.createWriteStream(filepath, { encoding: 'base64' });
     res.body.pipe(dest);
-    await res.text();
+
+    // A simple way to confirm the request is resolved, I use 'await res.buffer();'
+    // before, but I think it will save the hole file in a array buffer,
+    // use 'on('end', ... ) instead.
+    await new Promise(resolve => res.body.on('end', () => { resolve(); }));
+
+    const stat = await promisify(fs.stat)(filepath);
+    if (stat.size < originalLength) {
+      await promisify(fs.unlink)(filepath);
+      throw new Error(`${filepath} The Originalfile is incomplete`);
+    }
     return `${filepath} 成功`;
   }
   return `${filepath} 已存在`;
 };
 
 const htmlFetchQueue = retryRequestQueue(htmlFetchText)(config.HtmlGetCount, config.htmlGetRetransmissionCount, ['network timeout at', 'failed, reason:', 'Response timeout while trying to fetch'], config.htmlGetTimeout);
-const originalFetchQueue = retryRequestQueue(originalFetchText)(config.OriginalGetCount, config.originalOneRetransmissionCount, ['network timeout at', 'failed, reason:', 'Response timeout while trying to fetch'], config.originalOneGetTimeOut);
+const originalFetchQueue = retryRequestQueue(originalFetchText)(config.OriginalGetCount, config.originalOneRetransmissionCount, ['network timeout at', 'failed, reason:', 'The Originalfile is incomplete'], config.originalOneGetTimeOut);
 
+// There is only one instance
 function htmlFetch() {
   return htmlFetchQueue;
 }

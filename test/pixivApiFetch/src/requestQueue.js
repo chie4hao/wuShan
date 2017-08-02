@@ -2,9 +2,11 @@ const Queue = require('./queue');
 
 const retryRequestQueue = fun => (concurrency, retryCount, retryMessage, retryTimeout) => {
   const q = Queue(concurrency);
+
   if (!Array.isArray(retryMessage)) {
     retryMessage = [retryMessage];
   }
+
   const req = async (url, options, ...args) => {
     for (let i = 0; i < retryCount; i += 1) {
       try {
@@ -16,10 +18,10 @@ const retryRequestQueue = fun => (concurrency, retryCount, retryMessage, retryTi
         if (retryMessage.every(a => e.message.indexOf(a) === -1)) {
           throw e;
         }
-        console.log(e);
+        console.log(e.message);
       }
     }
-    throw new Error(`${url} timeOut retry ${concurrency} times`);
+    throw new Error(`${url} timeOut retry ${retryCount} times`);
   };
   return req;
 };
