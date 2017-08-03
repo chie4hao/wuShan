@@ -41,7 +41,7 @@ pixiv.downloadAllIllust('ピアノ 1000users入り').then(function(a){
 
 // 下载搜索结果的全部图片
 
- pixiv.downloadAllIllust('艦これ 5000users入り').then(function(a){
+ pixiv.downloadAllIllust('艦これ10000users入り').then(function(a){
  console.log(a)
  })
 
