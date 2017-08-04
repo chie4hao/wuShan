@@ -16,10 +16,10 @@ const originalFetchText = async (url, options, filepath) => {
 
     // A simple way to confirm the request is resolved, I use 'await res.buffer();'
     // before, but I think it will save the hole file in a array buffer,
-    // use 'on('end', ... ) instead.
-    await new Promise(resolve => res.body.on('end', () => { resolve(); }));
+    // then I use 'res.body.on('end', ... ) instead, and more bug bug bug, so......
 
-    const stat = await promisify(fs.stat)(filepath);
+    await new Promise(resolve => dest.on('close', () => { resolve(); }));
+    const stat = fs.statSync(filepath);
     if (stat.size < originalLength) {
       await promisify(fs.unlink)(filepath);
       throw new Error(`${filepath} The Originalfile is incomplete`);

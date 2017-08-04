@@ -19,8 +19,8 @@ const illustIdOriginal = async (illustId) => {
     tagsStr += ` ${a.children[0].data}`;
   });
 
-  if (!config.tagExistsFilter.every(a => tagsStr.indexOf(a) !== -1)
-    && config.tagNotExistsFilter.every(b => tagsStr.indexOf(b) === -1)) return `${illustId} 已过滤`;
+  if (config.tagExistsFilter.some(a => tagsStr.indexOf(a) === -1)
+    || config.tagNotExistsFilter.some(b => tagsStr.indexOf(b) !== -1)) return `${illustId} 已过滤`;
 
   const name = $('.title', wrapper)[0].children[0].data;
   const filepath = './test/pixivApiFetch/resources/';
@@ -31,8 +31,7 @@ const illustIdOriginal = async (illustId) => {
     const ugoiraUrl = `https://www.pixiv.net/member_illust.php?mode=ugoira_view&illust_id=${illustId}`;
     const ugoiraText = await htmlFetch(ugoiraUrl, new PixivOption('GET', mediumUrl));
     const a = ugoiraText.match(/https:\\\/\\\/.+\\\/img-zip-ugoira\\\/img.+zip/)[0].replace(/\\/g, '');
-    const res = await originalFetch(a, new PixivOption('GET', ugoiraUrl), `${filepath}${illustId}_${name}.zip`);
-    return res;
+    return originalFetch(a, new PixivOption('GET', ugoiraUrl), `${filepath}${illustId}_${name}.zip`);
   } else if ($('a', worksDisplay).length !== 0) {
     // 漫画模式
     if (!config.mangaModel) return `${illustId} manga 已过滤`;
@@ -41,26 +40,25 @@ const illustIdOriginal = async (illustId) => {
     const mangaText = await htmlFetch(mangaUrl, new PixivOption('GET', mediumUrl));
     // const count = $('.page-menu .total', mangaText).text();
     const urlList = Array.prototype.map.call($('#main .manga .item-container a', mangaText), a => `https://www.pixiv.net${a.attribs.href}`);
-    const a = await Promise.all(urlList.map((mangaOriginal =>
+    return Promise.all(urlList.map((mangaOriginal =>
       (async () => {
         const mangaOriginalUrl = $('img', await htmlFetch(mangaOriginal, new PixivOption('GET', mangaUrl))).attr('src');
         // 这句不安全
         const mangaOriginalType = mangaOriginalUrl.match(/_p\d*\.\w*$/)[0];
         const filename = `${illustId}_${name}${mangaOriginalType}`.replace(/\\|\/|\?|\*|:|"|<|>|\|/g, '');
-        const res = await originalFetch(mangaOriginalUrl, new PixivOption('GET', mangaOriginal), filepath + filename);
-        return res;
+        return originalFetch(mangaOriginalUrl, new PixivOption('GET', mangaOriginal), filepath + filename);
       })()
     )));
-    return a;
   }
   // 单图
+
+  if (!config.OriginModel) return `${illustId} originImage 已过滤`;
   const imageUrl = $('._illust_modal img', wrapper).attr('data-src');
   const imageType = imageUrl.match(/\.\w*$/)[0];
   const filename = `${illustId}_${name}${imageType}`.replace(/\\|\/|\?|\*|:|"|<|>|\|/g, '');
-  const res = await originalFetch(imageUrl, new PixivOption('GET', mediumUrl), filepath + filename);
-  return res;
+  return originalFetch(imageUrl, new PixivOption('GET', mediumUrl), filepath + filename);
 };
 
 module.exports = illustIdOriginal;
 
-// illustIdOriginal(5101272).then(a => console.log(a)).catch(e => console.log(e));
+// illustIdOriginal(42050112).then(a => console.log(a)).catch(e => console.log(e));

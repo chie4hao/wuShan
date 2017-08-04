@@ -2,11 +2,16 @@ module.exports = {
     // 此项为必需,请根据自己浏览器Cookie中的PHPSESSID更改,不更改或者不正确的PHPSESSID程序无法工作
   PHPSESSID: '8318723_7de7fe36aadc6ab0740d25c27895a0b7',
 
+    // 是否下咋爱普通单图
+  OriginModel: true,
+
     // 是否下载多图的illustId,默认true基本不需要改
   mangaModel: true,
 
     // 是否下载动图
   playerModel: true,
+
+  minimumBookmark: 0,
 
     // 筛选掉的tags,基本都是些女性向的,应该没女生用吧...
   tagNotExistsFilter: ['BL', '腐', '漫画', '講座', '刀剣乱', '松', '黒子', '弱虫ペダル', '世界一初恋', '進撃の巨人', 'ハイキュー', '銀魂', 'アザゼルさん'],
@@ -15,8 +20,8 @@ module.exports = {
   tagExistsFilter: [],
 
     // 最大并行原画请求数量和Html请求数量,网速好可以适当调高一点,太高可能会被封IP？
-  OriginalGetCount: 16,
-  HtmlGetCount: 9,
+  OriginalGetCount: 8,
+  HtmlGetCount: 3,
 
     // 请求超时时间(ms)
   htmlGetTimeout: 30000,

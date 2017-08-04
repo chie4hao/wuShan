@@ -30,6 +30,7 @@ app/node_modules
 test/pixivAPI/node_modules
 test/pixivAPI/resources
 test/pixivApiFetch/resources
+test/pixivApiFetch/node_modules
 
 # OSX
 .DS_Store
