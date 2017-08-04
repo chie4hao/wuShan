@@ -18,7 +18,7 @@ const retryRequestQueue = fun => (concurrency, retryCount, retryMessage, retryTi
         if (retryMessage.every(a => e.message.indexOf(a) === -1)) {
           throw e;
         }
-        console.log(e.message);
+        console.warn(e.message);
       }
     }
     throw new Error(`${url} timeOut retry ${retryCount} times`);

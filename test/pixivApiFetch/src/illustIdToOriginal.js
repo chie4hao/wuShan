@@ -12,6 +12,8 @@ const illustIdOriginal = async (illustId) => {
 
   if ($('img', worksDisplay).length === 0) return `${illustId} 图片地址未找到`;
 
+  // a old method to filter, use urlSearchParams instead
+  /*
   const tagsArray = $('.work-tags dl dd ul li .text', wrapper);
 
   let tagsStr = '';
@@ -21,6 +23,7 @@ const illustIdOriginal = async (illustId) => {
 
   if (config.tagExistsFilter.some(a => tagsStr.indexOf(a) === -1)
     || config.tagNotExistsFilter.some(b => tagsStr.indexOf(b) !== -1)) return `${illustId} 已过滤`;
+  */
 
   const name = $('.title', wrapper)[0].children[0].data;
   const filepath = './test/pixivApiFetch/resources/';
