@@ -1,3 +1,4 @@
-const pixivDownload = require('./pixivAPI');
+const { pixivDownload, pixivDownloadIllustId } = require('./pixivAPI');
 
-pixivDownload('asdf').then(a => console.log(a));
+pixivDownload('asdfasdf').then(a => console.log(a));
+// pixivDownloadIllustId(39840945).then(a => console.log(a));

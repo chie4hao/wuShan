@@ -10,7 +10,7 @@ const illustIdOriginal = async (illustId) => {
 
   const worksDisplay = $('.works_display', wrapper);
 
-  if ($('img', worksDisplay).length === 0) return `${illustId} 图片地址未找到`;
+  if ($('img', worksDisplay).length === 0) throw new Error('Not Logged In');
 
   // a old method to filter, use urlSearchParams instead
   /*

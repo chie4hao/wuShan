@@ -60,8 +60,12 @@ class DownloadSearch {
   */
 
   async fetchImageCount() {
-    const span = $('#wrapper ._unit .count-badge', await htmlFetch(`${this.searchUrl}1`, new PixivOption('GET', 'http://www.pixiv.net/')));
-    return span[0].children[0].data.match(/^\d*/)[0];
+    const $1 = $.load(await htmlFetch(`${this.searchUrl}1`, new PixivOption('GET', 'http://www.pixiv.net/')));
+    if ($1('body').attr('class').indexOf('not-logged-in') !== -1) {
+      throw new Error('Not Logged In');
+    }
+    const span = $1('#wrapper ._unit .count-badge');
+    return span.text().match(/^\d*/)[0];
   }
 
   async downloadSearchStr() {
@@ -117,4 +121,4 @@ class DownloadSearch {
 
 const pixivDownload = arg => new DownloadSearch(arg).begin();
 
-module.exports = pixivDownload;
+module.exports = { pixivDownload, pixivDownloadIllustId: illustIdToOriginal };

@@ -1,6 +1,6 @@
 module.exports = {
     // 此项为必需,请根据自己浏览器Cookie中的PHPSESSID更改,不更改或者不正确的PHPSESSID程序无法工作
-  PHPSESSID: '8318723_7de7fe36aadc6ab0740d25c27895a0b',
+  PHPSESSID: '8318723_1a36078b83740ddafc97692da1456100',
 
     // 是否下咋爱普通单图
   OriginModel: true,
