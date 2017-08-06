@@ -19,7 +19,11 @@ function RequestOptions(method, referer, PHPSESSID) {
   this.method = method;
 }
 
+const captcha = 'lsdkfj';
+
 async function login(pixivId, password) {
+  const form = new FormData();
+
   const baseUrl = 'https://accounts.pixiv.net/login?lang=zh&source=pc&view_type=page&ref=wwwtop_accounts_index';
 
   const res = await nodeFetch(baseUrl, new RequestOptions('GET'));
@@ -27,7 +31,6 @@ async function login(pixivId, password) {
 
   let PHPSESSID = parse(res.headers.get('set-cookie'), ';').PHPSESSID;
   console.log(PHPSESSID);
-  const form = new FormData();
 
   form.append('pixiv_id', pixivId);
   form.append('password', password);

@@ -9,10 +9,7 @@ import { configureStore, history } from './store/configureStore';
 injectTapEventPlugin();
 
 const store = configureStore();
-// import { configureStore, history } from './store/configureStore';
 // import './app.global.css';
-
-// const store = configureStore();
 
 render(
   <AppContainer>
